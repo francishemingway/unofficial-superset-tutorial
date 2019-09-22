@@ -230,6 +230,6 @@ those flights that departed from the United Kingdom – you will see the
 filter is applied to all of the other visualizations on the dashboard.
 
 
-.. |image0| image:: Images/markdown.png
+.. |image0| image:: images/markdown.png
    :width: 5.08cm
    :height: 3.889cm
