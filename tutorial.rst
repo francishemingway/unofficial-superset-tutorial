@@ -33,6 +33,9 @@ In this tutorial, we will introduce key concepts in Apache Superset through the 
 Obtaining and loading the data
 ===================
 
+The data for this tutorial can be found `on Github
+<https://github.com/francishemingway/unofficial-superset-tutorial/blob/master/tutorial_flights.csv>`_.
+
 In the top menu, select **Sources > Upload a CSV**. Then, enter the **Table name** as tutorial_flights and select the **CSV file** from your computer. Leaving all the other options in their default settings, select **Save** at the bottom of the page.
 
 
