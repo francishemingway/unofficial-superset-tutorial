@@ -13,16 +13,23 @@
    limitations under the License.
 
 Disclaimer
-===================
+==========
 
-Apache® and Apache Superset are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries. No endorsement by The Apache Software Foundation is implied by the use of these marks.
+Apache® and Apache Superset are either registered trademarks or trademarks
+of the Apache Software Foundation in the United States and/or other countries.
+No endorsement by The Apache Software Foundation is implied by the use of
+these marks.
 
 Introduction
-===================
+============
 
-In this tutorial, we will introduce key concepts in Apache Superset through the exploration of a real dataset which contains the flights made by employees of a UK-based organization in 2011. The following information about each flight is given:
+In this tutorial, we will introduce key concepts in Apache Superset through
+the exploration of a real dataset which contains the flights made by employees
+of a UK-based organization in 2011. The following information about each
+flight is given:
 
-- The traveller's department. For the purposes of this tutorial the names of the departments have been renamed Orange, Yellow and Purple.
+- The traveller's department. For the purposes of this tutorial the names of
+  the departments have been renamed Orange, Yellow and Purple.
 - The cost of the ticket
 - The travel class (Economy, Premium Economy, Business and First Class)
 - Whether the ticket was a single or return.
@@ -31,12 +38,26 @@ In this tutorial, we will introduce key concepts in Apache Superset through the 
 - The distance between the origin and destination, in km.
 
 Obtaining and loading the data
-===================
+==============================
 
 The data for this tutorial can be found `on Github
 <https://github.com/francishemingway/unofficial-superset-tutorial/blob/master/tutorial_flights.csv>`_.
 
-In the top menu, select **Sources > Upload a CSV**. Then, enter the **Table name** as tutorial_flights and select the **CSV file** from your computer. Leaving all the other options in their default settings, select **Save** at the bottom of the page.
+In the top menu, select **Sources > Upload a CSV**.
+
+.. image:: images/upload_a_csv.png
+
+Then, enter the **Table name** as tutorial_flights and select the **CSV file**
+ from your computer.
+
+.. image:: images/csv_to_database_configuration.png
+
+Next enter the text Travel Date into the **Parse Dates** field.
+
+.. image:: images/parse_dates_column.png
+
+Leaving all the other options in their default settings, select **Save** at
+the bottom of the page.
 
 
 Table Visualization
@@ -48,16 +69,26 @@ table to show the number of flights and cost per travel class.
 
 To create a new chart, select the **New** **>** **Chart**.
 
+.. image:: images/add_new_chart.png
+
 Once in the **Create a new chart** dialogue, select tutorial_flights
-from the **Chose a datasource** dropdown, and select the visualization
-type as Table. Then, select **Create new chart** to go into the chart
-view.
+from the **Chose a datasource** dropdown.
+
+.. image:: images/add_new_chart.png
+
+Next, select the visualization type as Table.
+
+.. image:: images/chose_a_datasource.png
+
+Then, select **Create new chart** to go into the chart view.
 
 By default, Apache Superset only shows the last week of data: in our example,
 we want to look at all the data in the dataset. No problem - within the
 **Time** section, remove the filter on **Time range** by selecting on
 **Last week** **> No filter**, with a final **OK** to confirm your
 selection.
+
+.. image:: images/no_filter_on_time_filter.png
 
 Now, we want to specify the rows in our table by using the **Group by**
 option. Since in this example, we want to understand different Travel
@@ -67,19 +98,25 @@ Next, we can specify the metrics we would like to see in our table with
 the **Metrics** option. Count(*), which represents the number of rows in
 the table (in this case corresponding to the number of flights since we
 have a row per flight), is already there. To add cost, within
-**Metrics**,select Total Cost ex VAT. **Save** the default aggregation
+**Metrics**, select Cost. **Save** the default aggregation
 option, which is to sum the column.
 
+.. image:: images/sum_cost_column.png
+
 Finally, select **Run Query** to see the results of the table.
+
+.. image:: images/tutorial_table.png
 
 Congratulations, you have created your first visualization in Apache Superset!
 
 To save the visualization, click on **Save** in the top left of the
-screen. Here, enter a name for your chart (you will be able to find it
-again through the **Charts** screen, accessible in the top menu) and
-select **Add to new dashboard**. Once you’ve entered both a **[chart
-name]**, such as Tutorial Table, and a **[dashboard name]**, such as
-Tutorial Dashboard, select **Save & go to dashboard**.
+screen. Select the **Save as** option, and enter the chart name as Tutorial
+Table (you will be able to find it
+again through the **Charts** screen, accessible in the top menu). Similarly,
+select **Add to new dashboard** and enter Tutorial Dashboard. Finally,
+select **Save & go to dashboard**.
+
+.. image:: images/save_tutorial_table.png
 
 Dashboard basics
 ================
@@ -94,6 +131,8 @@ On this dashboard you should see the table you created in the previous
 section. Select **Edit dashboard** and then hover over the table. By
 selecting the bottom right hand corner of the table (the cursor will
 change too), you can resize it by dragging and dropping.
+
+.. image:: images/resize_tutorial_table_on_dashboard.png
 
 Finally, save your changes by selecting **Save changes** in the top
 right.
@@ -122,8 +161,10 @@ January 2011 and 30\ :sup:`th` June 2011 respectively by either entering
 directly the dates or using the calendar widget (by selecting the month
 name and then the year, you can move more quickly to far away dates).
 
+.. image:: images/select_dates_pivot_table.png
+
 Next, within the **Query** section, remove the default COUNT(*) replace
-with Total Cost ex VAT, keeping the default SUM aggregate. Note that
+with Cost, keeping the default SUM aggregate. Note that
 Apache Superset will indicate the type of the metric by the symbol on the left
 hand column of the list (ABC for string, # for number, a clock face for
 time, etc.).
@@ -131,8 +172,10 @@ time, etc.).
 In **Group by** select Time: this will automatically use the Time
 Column and Time Grain selections we defined in the Time section.
 
-Within **Columns**, select first Customer and then Travel Class. All set
+Within **Columns**, select first Department and then Travel Class. All set
 – let’s **Run Query** to see some data!
+
+.. image:: images/tutorial_pivot_table.png
 
 You should see months in the rows and Department and Travel Class in the
 columns. To get this in our dashboard, select **Save,** name the chart
@@ -151,10 +194,13 @@ In the Time section, as before, keep the **Time Column** as Travel Date
 and **Time Grain** as month but this time for the **Time range** select
 **No filter** as we want to look at entire dataset.
 
-Within **Metrics**, remove the default COUNT(*) and replace with Total
-Cost ex VAT. This time, we want to change how this column is aggregated
-to show the mean value: we can do this by selecting **AVG** in the
-**aggregate** dropdown. Select **Run Query** to show the data on the
+Within **Metrics**, remove the default COUNT(*) and replace with Cost. This
+time, we want to change how this column is aggregated to show the mean value:
+we can do this by selecting **AVG** in the **aggregate** dropdown.
+
+.. image:: images/average_aggregate_for_cost.png
+
+Next, select **Run Query** to show the data on the
 chart.
 
 How does this look? Well, we can see that the average cost goes up in
@@ -173,6 +219,8 @@ pane, try changing the **Color Scheme**, removing the range filter by
 selecting No in the **Show Range Filter** drop down and adding some
 labels using **X Axis Label** and **Y Axis Label**.
 
+.. image:: images/tutorial_line_chart.png
+
 Once you’re done, **Save** as Tutorial Line Chart, use **Add chart to
 existing dashboard** to add this chart to the previous ones on the
 Tutorial Dashboard and then **Save & go to dashboard**.
@@ -189,13 +237,15 @@ Within the Insert components pane, drag and drop a **Markdown** box on
 the dashboard. Look for the blue lines which indicate the anchor where
 the box will go.
 
+.. image:: images/blue_bar_insert_component.png
+
 Now, to edit the text, select the box. You can enter text, in markdown
 format (see
 `here <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet>`__
 for more information about this format). You can toggle between
 **Edit** and **Preview** using the menu on the top of the box.
 
-|image0|
+.. image:: images/markdown.png
 
 To exit, select any other part of the dashboard. Finally, don’t forget
 to keep your changes using **Save changes**.
@@ -223,13 +273,27 @@ alphabetical order. First, enter the column as Origin Country and keep
 all other options the same and then select **Run Query**. This gives us
 a preview of our filter.
 
+Next, remove the date filter by unchecking the **Date Filter** checkbox.
+
+.. image:: images/filter_on_origin_country.png
+
 Finally, select **Save**, naming the chart as Tutorial Filter, add the
 chart to our existing Tutorial Dashboard and then **Save & go to
 dashboard**. Once on the Dashboard, try using the filter to show only
 those flights that departed from the United Kingdom – you will see the
 filter is applied to all of the other visualizations on the dashboard.
 
+Publishing your dashboard
+=========================
 
-.. |image0| image:: images/markdown.png
-   :width: 5.08cm
-   :height: 3.889cm
+If you have followed all of the steps outlined in the previous section, you
+ should have a dashboard that looks like the below. If you would like, you
+ can rearrange the elements of the dashboard by selecting **Edit dashboard**
+ and dragging and dropping.
+
+If you would like to make your dashboard available to other users, simply
+select **Draft** next to the title of your dashboard on the top left to change
+your dashboard to be in Published state. You can also favorite this dashboard
+by selecting the star.
+
+.. image:: images/publish_dashboard.png
