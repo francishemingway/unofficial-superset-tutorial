@@ -297,3 +297,150 @@ your dashboard to be in Published state. You can also favorite this dashboard
 by selecting the star.
 
 .. image:: images/publish_dashboard.png
+
+
+Taking your dashboard further
+=============================
+
+In the following sections, we will look at more advanced Apache Superset
+ topics.
+
+Annotations
+-----------
+
+Annotations allow you to add additonal context to your chart. In this section,
+ we will add an annotation to the Tutorial Line Chart we made in a previous 
+section. Specifically, we will add the dates when some flights were cancelled 
+by the UK's Civil Aviation Authority in response to the eruption of the 
+Grímsvötn volcano in Iceland (23-25 May 2011).
+
+First, add an annotation layer by navigating to **Manage > Annotation Layers**. 
+Add a new annotation layer by selecting the green plus sign to add a new
+ record. Enter the name Volcanic Eruptions and save. We can use this layer to 
+refer to a number of different annotations.
+
+Next, add an annotation by navigating to **Manage > Annotations** and then 
+create a new annotation by selecting the green plus sign. Then, select the 
+Volcanic Eruptions layer, add a short description Grímsvötn and the eruption
+dates (23-25 May 2011) before finally saving.
+
+Then, navigate to the line chart by going to **Charts** then selecting Tutorial
+Line Chart from the list. Next, go to the **Annotations and Layers** section 
+and select **Add Annotation Layer**. Within this dialogue, name the layer as
+Annotation Layer as Volcanic Eruptions, change the **Annotation Layer Type** to
+Event, the **Annotation Source** as Superset annotation, and then the 
+**Annotation Layer** as Volcanic Eruptions. Select **Apply** to see your 
+annotation shown on the chart.
+
+If you wish, you can change how your annotation looks by changing the settings
+in the **Display configuration** section. Otherwise, select **OK** and finally
+**Save** to save your chart. If you keep the default selection to overwrite 
+the chart, your annotation will be saved to the chart and also appear
+automatically in the Tutorial Dashboard.
+
+Advanced Analytics
+------------------
+
+In this section, we are going to explore the Advanced Analytics feature
+of Apache Superset that allows you to apply additional transformations to your
+data. The three types of transformation are:
+
+Moving Average
+  Select a rolling window [#f1]_, and then apply a calculation on it (mean, 
+  sum or standard deviation). The forth option, cumsum, calculates the 
+  cumulative sum of the series [#f2]_.
+
+Time Comparison
+  Shift your data in time and, optionally, apply a calculation to compare the
+  shifted data with your actual data (e.g. calculate the absolute difference
+  between the two).
+
+Python Functions
+  Resample your data using one of a variety of methods [#f3]_.
+
+Setting up the base chart
+'''''''''''''''''''''''''
+
+In this section, we're going to set up a base chart which we can then apply
+the different Advanced Analytics features to. Start off by creating a new chart
+using the same tutorial_flights datasource and  the **Line Chart** 
+visualization type. Within the Time section, set the **Time Range** as 
+1\ :sup:`st` October 2011 and 31\ :sup:`st` October 2011.
+
+Next, in the query section, change the Metrics to the sum of Cost. Select
+**Run Query** to show the chart. You should see the total cost per day for 
+each month in October 2011.
+
+Finally, save the visualization as Tutorial Advanced Analytics Base, adding
+it to the Tutorial Dashboard.
+
+Rolling mean
+''''''''''''
+
+There is quite a lot of variation in the data, which makes it difficult to 
+identify any trend. One approach we can take is to show instead a rolling
+average of the time series. To do this, in  the **Moving Average** subsection
+of **Advanced Analytics**, select mean in the **Rolling** box and enter 7 into
+both Periods and Min Periods. The period is the length of the rolling period 
+expressed as a multiple of the Time Grain. In our example, the Time Grain
+is day, so the rolling period is 7 days, such that on the 7th October 2011
+the value shown would correspond to the first seven days of October 2011. 
+Lastly, by specifying **Min Periods** as 7, we ensure that our mean is always
+calculated on 7 days and we avoid any ramp up period.
+
+After displaying the chart by selecting **Run Query** you will see that the 
+data is less variable and that the series starts later as the ramp up period is
+exluded.
+
+Save the chart as Tutorial Rolling Mean and add it to the Tutorial 
+Dashboard.
+
+Time Comparison
+'''''''''''''''
+
+In this section, we will compare values in our time series to the value a week
+before. Start off by opening the Tutorial Advanced Analytics Base chart, by 
+going to **Charts** in the top menu and then selecting the visualization name
+in the list (alternatively, find the chart in the Tutorial Dashboard and 
+select Explore chart from the menu for that visualization).
+
+Next, in the **Time Comparison** subsection of **Advanced Analytics**, enter
+the **Time Shift** by typing in "minus 1 week" (note this box accepts input
+in natural langage). **Run Query** to see the new chart, which has an
+additional series with the same values, shifted a week back in time.
+
+
+
+Then, change the **Calculation type** to Absolute difference and select **Run
+Query**. We can now see only one series again, this time showing the difference
+between the two series we saw previously.
+
+Save the chart as Tutorial Time Comparison and add it to the Tutorial 
+Dashboard.
+
+Resampling the data
+'''''''''''''''''''
+
+In this section, we'll resample the data so that rather than having daily data
+we have weekly data. As in the previous section, reopen the Tutorial Advanced 
+Analytics Base chart.
+
+Next, in the **Python Functions** subsection of **Advanced Analytics**, enter
+7D, corresponding to seven days, in the **Rule** and median as the **Method**
+and show the chart by selecting
+**Run Query**.
+
+Note that now we have a single data point every 7 days. In our case, the value
+showed corresponds to the median value within the seven daily data points. For
+more information on the meaning of the various options in this section, refer 
+to the `Pandas documentation <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html>`_.
+
+Lastly, save your chart as Tutorial Resample and and add it to the Tutorial 
+Dashboard. Go to the tutorial dashboard to see the four charts side by side
+and compare the different outputs.
+
+.. rubric:: Footnotes
+
+.. [#f1] Pandas' rolling method is used, documented `here <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rolling.html>`_.
+.. [#f2] Pandas' cumsum method is used, documented `here <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.cumsum.html>`_.
+.. [#f3] Pandas' resample method is used, documented `here <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.resample.html>`_.
