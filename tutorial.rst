@@ -48,7 +48,7 @@ In the top menu, select **Sources > Upload a CSV**.
 .. image:: images/upload_a_csv.png
 
 Then, enter the **Table name** as tutorial_flights and select the **CSV file**
- from your computer.
+from your computer.
 
 .. image:: images/csv_to_database_configuration.png
 
