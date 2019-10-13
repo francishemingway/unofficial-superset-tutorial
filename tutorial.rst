@@ -316,7 +316,7 @@ Grímsvötn volcano in Iceland (23-25 May 2011).
 
 First, add an annotation layer by navigating to **Manage > Annotation Layers**. 
 Add a new annotation layer by selecting the green plus sign to add a new
- record. Enter the name Volcanic Eruptions and save. We can use this layer to 
+record. Enter the name Volcanic Eruptions and save. We can use this layer to 
 refer to a number of different annotations.
 
 Next, add an annotation by navigating to **Manage > Annotations** and then 
