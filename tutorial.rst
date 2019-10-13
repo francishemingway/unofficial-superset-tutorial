@@ -302,8 +302,8 @@ by selecting the star.
 Taking your dashboard further
 =============================
 
-In the following sections, we will look at more advanced Apache Superset
- topics.
+In the following sections, we will look at more advanced Apache Superset 
+topics.
 
 Annotations
 -----------
