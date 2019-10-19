@@ -30,17 +30,17 @@ flight is given:
 
 - The traveller's department. For the purposes of this tutorial the names of
   the departments have been renamed Orange, Yellow and Purple.
-- The cost of the ticket
-- The travel class (Economy, Premium Economy, Business and First Class)
+- The cost of the ticket.
+- The travel class (Economy, Premium Economy, Business and First Class).
 - Whether the ticket was a single or return.
-- The date of travel
-- Information about the origin and destination
+- The date of travel.
+- Information about the origin and destination.
 - The distance between the origin and destination, in km.
 
 Obtaining and loading the data
 ==============================
 
-The data for this tutorial can be found `on Github
+Download the data for this tutorial to your computer from `Github
 <https://github.com/francishemingway/unofficial-superset-tutorial/blob/master/tutorial_flights.csv>`_.
 
 In the top menu, select **Sources > Upload a CSV**.
@@ -63,9 +63,8 @@ the bottom of the page.
 Table Visualization
 ===================
 
-We are going to start by creating a first chart, which will be a table
-with the data we’ve just loaded in. In this section, we’ll create a
-table to show the number of flights and cost per travel class.
+In this section, we’ll create our first visualization: a table to show the
+number of flights and cost per travel class.
 
 To create a new chart, select the **New** **>** **Chart**.
 
@@ -142,7 +141,7 @@ Pivot Table
 
 In this section, we will extend our analysis using a more complex
 visualization, Pivot Table. By the end of this section, you will have
-created a chart that shows the monthly spend on flights for the first
+created a table that shows the monthly spend on flights for the first
 six months, by department, by travel class.
 
 As before, create a new visualization by selecting **New > Chart** on
@@ -163,8 +162,8 @@ name and then the year, you can move more quickly to far away dates).
 
 .. image:: images/select_dates_pivot_table.png
 
-Next, within the **Query** section, remove the default COUNT(*) replace
-with Cost, keeping the default SUM aggregate. Note that
+Next, within the **Query** section, remove the default COUNT(*) and add
+Cost, keeping the default SUM aggregate. Note that
 Apache Superset will indicate the type of the metric by the symbol on the left
 hand column of the list (ABC for string, # for number, a clock face for
 time, etc.).
@@ -194,7 +193,7 @@ In the Time section, as before, keep the **Time Column** as Travel Date
 and **Time Grain** as month but this time for the **Time range** select
 **No filter** as we want to look at entire dataset.
 
-Within **Metrics**, remove the default COUNT(*) and replace with Cost. This
+Within **Metrics**, remove the default COUNT(*) and add Cost. This
 time, we want to change how this column is aggregated to show the mean value:
 we can do this by selecting **AVG** in the **aggregate** dropdown.
 
@@ -331,10 +330,13 @@ Line Chart from the list. Next, go to the **Annotations and Layers** section
 and select **Add Annotation Layer**. Within this dialogue, name the layer as
 Annotation Layer as Volcanic Eruptions, change the **Annotation Layer Type** to
 Event, the **Annotation Source** as Superset annotation, and then the
-**Annotation Layer** as Volcanic Eruptions. Select **Apply** to see your
-annotation shown on the chart.
+**Annotation Layer** as Volcanic Eruptions. 
 
 .. image:: images/annotation_settings.png
+
+Select **Apply** to see your annotation shown on the chart.
+
+.. image:: images/annotation.png
 
 If you wish, you can change how your annotation looks by changing the settings
 in the **Display configuration** section. Otherwise, select **OK** and finally
